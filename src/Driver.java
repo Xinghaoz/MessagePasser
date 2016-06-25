@@ -14,7 +14,7 @@ public class Driver {
 		MessagePasser mp = new MessagePasser(file, name);
 		
 		while (true) {
-			System.out.println(">>");
+			System.out.print(">>");
 			Scanner sc = new Scanner(System.in);
 			String str = sc.nextLine();
 			String[] s = str.split(" ");

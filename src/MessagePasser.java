@@ -11,10 +11,12 @@ public class MessagePasser {
 	public MessagePasser(String file, String name) throws FileNotFoundException {
 		YamlReader reader = new YamlReader();
 		Map<String, Host> hosts = reader.getHosts(file);
-		System.out.println("hosts = " + hosts);
 		Controller controller = new Controller(hosts, hosts.get(name));		
 		this.controller = controller;
 		this.myName = name;
+		System.out.println("I am " + this.myName + "\tip: " + 
+						   this.controller.getMyHost().getIp() + "\tport: " + 
+						   this.controller.getMyHost().getPort());
 		
 		Thread listener = new Thread(new Listener(controller));
 		listener.start();

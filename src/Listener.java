@@ -13,22 +13,28 @@ public class Listener implements Runnable {
 	
 	@Override
 	public void run() {
-		ServerSocket server;
+		ServerSocket server = null;
 		try {
 			server = new ServerSocket(this.controller.getMyHost().getPort());
-			Socket socket = server.accept();
-			String clientName = this.controller.findName(socket.getLocalAddress().toString(), socket.getPort());
-			System.out.println("+++++++ Received Connecction from " + clientName);
-			
-			// Do these in the Speaker
-			//ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			//this.controller.setOStream(clientName, oos);
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-			this.controller.setIStream(clientName, ois);
-			Thread listen = new Thread(new ListenSession(this.controller, ois, clientName));
-			listen.start();			
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		while (true) {
+			try {
+				Socket socket = server.accept();
+				String clientName = this.controller.findName(socket.getLocalAddress().toString(), socket.getPort());
+				System.out.println("+++++++ Received Connecction from " + clientName);
+				
+				// Do these in the Speaker
+				//ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				//this.controller.setOStream(clientName, oos);
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				this.controller.setIStream(clientName, ois);
+				Thread listen = new Thread(new ListenSession(this.controller, ois, clientName));
+				listen.start();			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	} 
