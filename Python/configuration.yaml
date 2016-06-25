@@ -1,0 +1,40 @@
+configuration :
+  - name : alice
+    ip : 127.0.0.1
+    port : 27727
+  - name : bob
+    ip : 127.0.0.1
+    port : 14257
+  - name : charlie
+    ip : 127.0.0.1
+    port : 15999
+  - name : deadpool
+    ip : 127.0.0.1
+    port : 1987
+  - name : ed
+    ip : 127.0.0.1
+    port : 2016
+
+sendRules :
+  - action : drop
+    src : bob
+    dest : alice
+
+  - action : dropAfter
+    src : deadpool
+    seqNum : 6
+
+  - action : delay
+    src : deadpool
+    dest : alice
+
+  - action : delay
+    dest : bob
+
+receiveRules :
+  - action : delay
+    src : charlie
+
+  - action : delay
+    src : bob
+    dest : deadpool
