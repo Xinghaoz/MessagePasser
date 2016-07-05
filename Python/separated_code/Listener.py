@@ -4,7 +4,7 @@ from ListenSession import ListenSession
 import threading
 
 class Listener(threading.Thread):
-    controller = None
+    # controller = None
 
     def __init__(self, controller):
         threading.Thread.__init__(self)

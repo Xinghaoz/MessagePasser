@@ -5,7 +5,7 @@ import pickle
 import socket
 
 class MessagePasser:
-    controller = None
+    # controller = None
 
     def __init__(self, controller):
         self.controller = controller

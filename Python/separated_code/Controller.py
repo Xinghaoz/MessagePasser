@@ -1,9 +1,9 @@
 class Controller:
-    my_name = ""
-    my_ip = ""
-    my_port = 0
-    hosts = {}
-    conn = {}
+    # my_name = ""
+    # my_ip = ""
+    # my_port = 0
+    # hosts = {}
+    # conn = {}
 
     def __init__(self, name, hosts):
         self.my_name = name

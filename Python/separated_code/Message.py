@@ -1,7 +1,7 @@
 class Message:
-    src = ""
-    dest = ""
-    message = ""
+    # src = ""
+    # dest = ""
+    # message = ""
 
     def __init__(self, src, dest, message):
         self.src = src
