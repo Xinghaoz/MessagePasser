@@ -2,7 +2,7 @@ import threading
 import pickle
 
 class ListenSession(threading.Thread):
-    conn = None
+    # conn = None
 
     def __init__(self, conn):
         threading.Thread.__init__(self)
