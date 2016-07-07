@@ -91,11 +91,6 @@ if __name__ == "__main__":
     filename = sys.argv[1]
     my_name = sys.argv[2]
     hosts = get_hosts(filename)
-    for host_name in hosts:
-        host = hosts[host_name]
-        print host.name, host.ip, host.port
-
-    print '\n'
 
     controller = Controller(my_name, hosts)
     mp = MessagePasser(controller)
@@ -104,5 +99,8 @@ if __name__ == "__main__":
         cmd = raw_input(">>")
         cmd_trim = cmd.strip()
         message_array = cmd_trim.split(" ", 1)
-        message = Message(my_name, message_array[0], message_array[1])
+        if len(message_array) < 2:
+            print "Invalid input"
+            continue
+        message = Message(my_name, message_array[0], message_array[1:])
         mp.send(message)
